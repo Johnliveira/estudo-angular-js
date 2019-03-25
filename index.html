@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE-edge">
+		<meta http-equiv="Content-type" content="text/html"; charset="UTF-8">
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+	</head>
+	<body class="container" ng-app="aplicacao">
+		<div class="header-inner">
+			<h1 style="text-align: center; color: blue;">
+			Bem Vindo ao Curso de Desenvolvimento WEB com Angular JS
+			</h1>
+		</div>
+		<div ng-controller="PrimeiroController" class="well">
+			<p>Olá, {{nome}} seja bem vindo!</p>
+			<div ng-class="{'panel panel-primary':iniciado, 'panel panel-danger':!iniciado}">
+				<div class="panel-heading">
+					<h3 class="panel-title">Situação do Curso</h3>
+				</div>
+				<div class="panel-body">
+					<p ng-show="iniciado">Curso em Andamento!</p>
+					<p ng-hide="iniciado">Curso Finalizado!</p>
+					<p ng-if="!iniciado">Aguarde o proximo curso!</p>
+				</div>
+			</div>
+			<h3>Alunos Cadastrados</h3>
+			<div class="table-responsive">
+				<table class="table table-striped">
+					<tr>
+						<th>
+							Nome
+						</th>
+					</tr>
+					<tr ng-repeat="aluno in alunos">
+						<td>
+							{{aluno}}
+						</td>
+					</tr>
+				</table>
+			</div>
+			<button ng-show="iniciado" ng-click="finalizar()" class="btn btn-danger">
+				Finalizar			
+			</button>
+			<button ng-hide="iniciado" ng-click="iniciar()" class="btn btn-success">
+				Iniciar			
+			</button>
+			<h3>Nova Inscriçãio no Curso</h3>
+			<form name="form_1">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group form-group-default">
+							<label>Nome</label>
+							<input class="form-control" type="text" id="nome_aluno" name="nome_aluno" ng-model="nome_aluno">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<button ng-click="submeter()" class="btn btn-primary">
+							Adicionar
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="container-fluid container-fixed-lg footer">
+			<div class="copyright sm-text-center">
+				<p class="small no-margin pull-left sm-pull-reset">
+					<span class="hint-text">Copyright @ 2019</span>
+				</p>
+			</div>
+		</div>
+		<script src="scripts/libs/angular.js"></script>
+		<script src="scripts/app.js"></script> 
+		<script src="scripts/primeiro-controller.js"></script>
+	</body>
+</html>
