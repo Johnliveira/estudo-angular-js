@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta http-equiv="Content-type" content="text/html" ; charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+</head>
+
+<body>
+    <div ng-controller="ListagemAlunosController" class="well">
+        <h3>Olá, {{nome}} seja bem vindo!</h3>
+        <div ng-class="{'panel panel-primary':iniciado, 'panel panel-danger':!iniciado}" ng-show="iniciado">
+            <div class="panel-heading">
+                <h3 class="panel-title">Situação do Curso</h3>
+            </div>
+            <div class="panel-body">
+                <p ng-show="iniciado">Curso em Andamento!</p>
+                <p ng-hide="iniciado">Curso Finalizado!</p>
+                <p ng-if="!iniciado">Aguarde o próximo curso!</p>
+                <p> Preço do curso: {{valor | currency : 'R$'}}</p>
+                <p>Data do curso: {{data | date:'dd/MM/yyyy'}}</p>
+            </div>
+        </div>
+        <div ng-show="iniciado">
+            <label>Definir Preço:</label>
+            <input type="number" id="valor" name="valor" ng-model="valor">
+            <input type="date" id="data" name="data" ng-model="data">
+        </div>
+        <div ng-show="iniciado">
+            <h3>Alunos Cadastrados</h3>
+            <label>Filtrar por nome</label>
+            <input type="text" ng-model="filtro">
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <tr>
+                    <th ng-click="ordenarPorNome()">Nome</th>
+                    <th ng-click="ordernarPorIdade()">Idade</th>
+                </tr>
+                <tr ng-repeat="aluno in alunos | filter : filtro">
+                    <td>{{aluno.nome}}</td>
+                    <td>{{aluno.idade}}</td>
+                </tr>
+            </table>
+        </div>
+        <button ng-show="iniciado" ng-click="finalizar()" class="btn btn-danger">
+            Finalizar
+        </button>
+        <button ng-hide="iniciado" ng-click="iniciar()" class="btn btn-success">
+            Iniciar
+        </button>
+        <br><br>
+        <button ng-click="exibeCadastro()" class="btn btn-primary">
+            <span ng-hide="cadastrar">Cadastrar</span>
+            <span ng-show="cadastrar">Ocultar</span>
+        </button>
+        <br><br>
+        <div class="panel panel-primary" ng-if="cadastrar">
+            <div class="panel-heading">
+                <h3 class="panel-title">Novo Cadastro</h3>
+            </div>
+            <div class="panel-body">
+                <cadastro-aluno>
+                </cadastro-aluno>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

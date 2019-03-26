@@ -1,8 +1,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE-edge">
-		<meta http-equiv="Content-type" content="text/html"; charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE-Edge">
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
 	</head>
 	<body class="container" ng-app="aplicacao">
@@ -11,90 +11,17 @@
 			Bem Vindo ao Curso de Desenvolvimento WEB com Angular JS
 			</h1>
 		</div>
-		<div ng-controller="ListagemAlunosController" class="well">
-			<p>Olá, {{nome}} seja bem vindo!</p>
-			<div ng-class="{'panel panel-primary':iniciado, 'panel panel-danger':!iniciado}">
-				<div class="panel-heading">
-					<h3 class="panel-title">Situação do Curso</h3>
-				</div>
-				<div class="panel-body">
-					<p ng-show="iniciado">Curso em Andamento!</p>
-					<p ng-hide="iniciado">Curso Finalizado!</p>
-					<p ng-if="!iniciado">Aguarde o proximo curso!</p>
-					<p>Preço do curso: {{valor | currency : 'R$ '}}</p>
-					<p>Última atualização: {{hoje | date : 'dd/MM/yyyy'}}</p>
-				</div>
+		<nav class="navbar navbar-default" ng-controller="MenuController">
+			<div class="collapse navbar-collapse" id="menu">
+				<ul class="nav navbar-nav">
+					<li><a ng-click="irInicio()">Início</a></li>
+					<li><a ng-click="irListagem()">Alunos</a></li>
+					<li><a ng-click="irCadastro()">Cadastro</a></li>
+					<li><a ng-click="irPrevisao()">Previsão do Tempo</a></li>
+				</ul>
 			</div>
-			<div>
-				<label>Definir Preço:</label>
-				<input type="number" id="valor" name="valor" ng-model="valor">
-			</div>
-			<h3>Alunos Cadastrados</h3>
-			<div>
-				<label>Filtrar por nome:</label>
-				<input type="text" ng-model="filtro">
-			</div>
-			<div class="table-responsive">
-				<table class="table table-striped">
-					<tr>
-						<th ng-click="ordenadoPorNome">
-							Nome
-						</th>
-						<th ng-click="ordenadoPorIdade">
-							Idade
-						</th>
-					</tr>
-					<tr ng-repeat="aluno in alunos | filter : filtro">
-						<td>
-							{{aluno.nome}}
-						</td>
-						<td>
-							{{aluno.idade}}
-						</td>
-					</tr>
-				</table>
-			</div>
-			<button ng-show="iniciado" ng-click="finalizar()" class="btn btn-danger">
-				Finalizar			
-			</button>
-			<button ng-hide="iniciado" ng-click="iniciar()" class="btn btn-success">
-				Iniciar			
-			</button>
-		</div>
-		<div class="well" ng-controller="NovaInscricaoController">
-			<h3>Nova Inscrição no Curso</h3>
-			<form name="form_1">
-				<div class="row">
-					<div class="col-md-4">
-						<div class="form-group form-group-default">
-							<label>Nome</label>
-							<input class="form-control" type="text" id="nome_aluno" name="nome_aluno" ng-model="nome_aluno"  ng-minlength="3">
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="form-group form-group-default">
-							<label>Idade</label>
-							<input class="form-control" type="number" id="idade_aluno" ng-model="idade_aluno">
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4">
-						<button ng-click="submeter()" class="btn btn-primary">
-							Adicionar
-						</button>
-					</div>
-				</div>
-			</form>
-		</div>
-		<div class="well" ng-controller="PrevisaoTempoController">
-			<h3>Demonstrando o ng-resource</h3>
-			<h3>Previsão do Tempo</h3>
-			<h4>São Paulo, Brasil</h4>
-			<h4>Local: {{tempo.name}}</h4>
-			<h4>Temperatura: {{tempo.main.temp}}</h4>
-			<h4>Mínima: {{tempo.main.temp_min}} C e Máxima: {{tempo.main.temp_max}} C</h4>
-		</div>
+		</nav>
+		<div ui-view></div>
 		<div class="container-fluid container-fixed-lg footer">
 			<div class="copyright sm-text-center">
 				<p class="small no-margin pull-left sm-pull-reset">
@@ -104,10 +31,12 @@
 		</div>
 		<script src="scripts/libs/angular.js"></script>
 		<script src="scripts/libs/ngResource.js"></script>
+		<script src="scripts/libs/angular-ui-router.js"></script>
 		<script src="scripts/app.js"></script> 
 		<script src="scripts/listagem-alunos-controller.js"></script>
 		<script src="scripts/nova-inscricao-controller.js"></script>
 		<script src="scripts/previsao-tempo-controller.js"></script>
 		<script src="scripts/alunos-collection-service.js"></script>
+		<script src="scripts/menu-controller.js"></script>
 	</body>
 </html>

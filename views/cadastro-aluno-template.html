@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta http-equiv="Content-type" content="text/html" ; charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+</head>
+
+<body>
+    <div class="well" ng-controller="NovaInscricaoController">
+        <h3>Nova Inscrição no Curso</h3>
+        <form name="form_1">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group form-group-default">
+                        <label>Nome</label>
+                        <input class="form-control" type="text" id="nome_aluno" name="nome_aluno" ng-model="nome_aluno"
+                            ng-minlength="3">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group form-group-default">
+                        <label>Idade</label>
+                        <input class="form-control" type="number" id="idade_aluno" ng-model="idade_aluno">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <button ng-click="submeter()" class="btn btn-primary">
+                        Adicionar
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
